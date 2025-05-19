@@ -56,6 +56,15 @@ async function run() {
       const result = await usersCollaction.updateOne(filter,updateDoc,options)
       res.send(result);
     })
+
+    app.delete('/users/:id', async (req,res) => {
+      const {id} = req.params;
+      console.log(id)
+      const filter = {_id : new ObjectId(id)}
+      const result = await usersCollaction.deleteOne(filter)
+      res.send(result)
+    })
+
   } finally {
     
     // await client.close();
